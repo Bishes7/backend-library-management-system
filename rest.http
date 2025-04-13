@@ -9,3 +9,11 @@ GET {{rootURl}}
 
 ### User Register
 POST {{rootURl}}/api/v1/auth/register 
+Content-Type: application/json
+
+{
+    "fName":"anish",
+    "lName":"gurung",
+    "email":"a@g.com",
+    "password":"12345"
+}
