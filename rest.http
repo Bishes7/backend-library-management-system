@@ -4,3 +4,8 @@
 
 ### Check server status
 GET {{rootURl}}
+
+# Register Users
+
+### User Register
+POST {{rootURl}}/api/v1/auth/register 
