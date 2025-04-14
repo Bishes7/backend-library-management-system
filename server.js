@@ -4,6 +4,7 @@ import morgan from "morgan";
 import { dbConnect } from "./src/config/dbConnect.js";
 import authRouter from "./src/routers/authRouter.js";
 import { erroHandler } from "./src/middlewares/errorHandler.js";
+import { clientResponse } from "./src/middlewares/clientResponse.js";
 
 const app = express();
 const PORT = process.env.PORT || 8000;
@@ -15,9 +16,8 @@ app.use(express.json());
 
 // GET Method for server
 app.get("/", (req, res) => {
-  res.json({
-    message: "Get Method Working",
-  });
+  const message = "Get Method Working";
+  clientResponse({ req, res, message });
 });
 
 // Controllers
