@@ -3,6 +3,7 @@ import cors from "cors";
 import morgan from "morgan";
 import { dbConnect } from "./src/config/dbConnect.js";
 import authRouter from "./src/routers/authRouter.js";
+import { erroHandler } from "./src/middlewares/errorHandler.js";
 
 const app = express();
 const PORT = process.env.PORT || 8000;
@@ -23,6 +24,9 @@ app.get("/", (req, res) => {
 app.use("/api/v1/auth", authRouter);
 
 // importing DataBase Connection Function
+
+// Global Errror Handler
+app.use(erroHandler);
 
 dbConnect()
   .then(() => {
