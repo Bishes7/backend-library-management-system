@@ -5,6 +5,7 @@ import { dbConnect } from "./src/config/dbConnect.js";
 import authRouter from "./src/routers/authRouter.js";
 import { erroHandler } from "./src/middlewares/errorHandler.js";
 import { clientResponse } from "./src/middlewares/clientResponse.js";
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 const app = express();
 const PORT = process.env.PORT || 8000;
