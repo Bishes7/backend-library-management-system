@@ -1,5 +1,5 @@
 # API List
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+
 
 
 @rootURl = http://localhost:8000
@@ -14,8 +14,19 @@ POST {{rootURl}}/api/v1/auth/register
 Content-Type: application/json
 
 {
-    "fName":"anish",
+    "fName":"ans",
     "lName":"gurung",
-    "email":"ac@g.com",
+    "email":"ae@g.com",
     "password":"12345"
 }
+
+# Activating the users
+### POSTMehod
+POST {{rootURl}}/api/v1/auth/activate-user 
+Content-Type: application/json
+
+{
+"sessionid":"6801ff9337fddabf0cf0d56f",
+"t":"0420a943-a172-4789-b4ae-b8139cfd378e"
+}
+
