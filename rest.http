@@ -30,3 +30,14 @@ Content-Type: application/json
 "t":"0420a943-a172-4789-b4ae-b8139cfd378e"
 }
 
+# Login User
+### Login
+POST {{rootURl}}/api/v1/auth/login
+Content-Type: application/json
+
+{
+    "email":"specialbishes9@gmail.com",
+    "password": "Adamghat7#"
+
+}
+

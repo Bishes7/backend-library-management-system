@@ -3,14 +3,20 @@ import {
   createNewSession,
   deleteSession,
 } from "../models/session/sessionModel.js";
-import { createNewUser, updateUser } from "../models/user/userModel.js";
+import {
+  createNewUser,
+  getUserByEmail,
+  updateUser,
+} from "../models/user/userModel.js";
 import {
   userActivatedNotification,
   userActivationLink,
 } from "../services/email/emailService.js";
-import { encryptPasword } from "../utils/bcrypt.js";
+import { comparePassword, encryptPasword } from "../utils/bcrypt.js";
 import { v4 as uuidv4 } from "uuid";
+import { getjwts } from "../utils/jwt.js";
 
+// Register User
 export const insertNewUser = async (req, res, next) => {
   try {
     // receive user data
@@ -53,7 +59,7 @@ export const insertNewUser = async (req, res, next) => {
   }
 };
 
-// Method to verify the user
+// Method to Activate User
 export const activateUser = async (req, res, next) => {
   try {
     const { sessionid, t } = req.body;
@@ -82,6 +88,39 @@ export const activateUser = async (req, res, next) => {
 
     const message = "Invalid link or token expired";
     const statusCode = 400;
+    clientResponse({ req, res, message, statusCode });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// Login User
+export const loginUser = async (req, res, next) => {
+  try {
+    const { email, password } = req.body;
+
+    // get user by email
+    const user = await getUserByEmail(email);
+    if (user?._id) {
+      console.log(user);
+      // compare the password
+      const isPswMatched = comparePassword(password, user.password);
+
+      if (isPswMatched) {
+        console.log("User login Successfully");
+        //  call jwts function
+        const jwts = await getjwts(email);
+        return clientResponse({
+          req,
+          res,
+          message: "login successfully",
+          payload: jwts,
+        });
+      }
+    }
+
+    const message = "Invalid login details";
+    const statusCode = 401;
     clientResponse({ req, res, message, statusCode });
   } catch (error) {
     next(error);
