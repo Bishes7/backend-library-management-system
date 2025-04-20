@@ -15,7 +15,6 @@ export const accessJWT = async (email) => {
   const newSession = await createNewSession(obj);
   return newSession?._id ? token : null;
 };
-f;
 
 // generate refreshJWT
 export const refreshJWT = async (email) => {
