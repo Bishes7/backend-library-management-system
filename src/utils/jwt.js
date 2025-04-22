@@ -33,3 +33,13 @@ export const getjwts = async (email) => {
     refreshJWT: await refreshJWT(email),
   };
 };
+
+// Verify AccessJWT
+export const VerifyExcessJWT = (token) => {
+  try {
+    return jwt.verify(token, process.env.ACCESSJWT_KEY);
+  } catch (error) {
+    console.log(error);
+    return error.message;
+  }
+};

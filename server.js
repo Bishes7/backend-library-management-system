@@ -7,6 +7,8 @@ import { erroHandler } from "./src/middlewares/errorHandler.js";
 import { clientResponse } from "./src/middlewares/clientResponse.js";
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
+import userRouter from "./src/routers/userRouter.js";
+
 const app = express();
 const PORT = process.env.PORT || 8000;
 
@@ -22,7 +24,11 @@ app.get("/", (req, res) => {
 });
 
 // Controllers
+// Auth Controller
 app.use("/api/v1/auth", authRouter);
+
+// User Controller
+app.use("/api/v1/user", userRouter);
 
 // importing DataBase Connection Function
 

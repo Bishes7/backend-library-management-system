@@ -9,3 +9,8 @@ export const createNewSession = (sessionobj) => {
 export const deleteSession = (filter) => {
   return sessionSchema.findOneAndDelete(filter);
 };
+
+// checking if the token exist in session table
+export const checkToken = (filter) => {
+  return sessionSchema.findOne(filter);
+};
