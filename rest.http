@@ -30,3 +30,61 @@ Content-Type: application/json
 "t":"0420a943-a172-4789-b4ae-b8139cfd378e"
 }
 
+# Login User
+### Login
+POST {{rootURl}}/api/v1/auth/login
+Content-Type: application/json
+
+{
+    "email":"specialbishes9@gmail.com",
+    "password": "Adamghat7*"
+
+}
+
+# GET USER
+### GET
+GET {{rootURl}}/api/v1/user/profile
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNwZWNpYWxiaXNoZXM5QGdtYWlsLmNvbSIsImlhdCI6MTc0NTY2MzMyOSwiZXhwIjoxNzQ1NjY2OTI5fQ.a1Ee8Owot1qx1vfLaNL8ZB5Dd8v3mL9D4Ahv85mQesE   
+
+###GET New AccessJWT
+GET {{rootURl}}/api/v1/auth/renew-jwt
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNwZWNpYWxiaXNoZXM5QGdtYWlsLmNvbSIsImlhdCI6MTc0NTY2MzMyMCwiZXhwIjoxNzQ4MjU1MzIwfQ.l9vrQ4hlicj_vJKoWJw1pX5NS8lY88SJAfxrcuKTLhg
+
+### Random Otp
+POST {{rootURl}}/api/v1/auth/psw-reset
+Content-Type: application/json
+
+{
+    "email":"specialbishes9@gmail.com"
+}
+
+### Password Reset
+POST {{rootURl}}/api/v1/auth/update-password
+Content-Type: application/json
+
+{
+    "email":"specialbishes9@gmail.com",
+    "password":"Adamghat7@",
+    "randomOTP":7165
+}
+
+#Books API Endpoints
+###GET
+GET {{rootURl}}/api/v1/books
+
+###POST Books
+POST {{rootURl}}/api/v1/books
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNwZWNpYWxiaXNoZXM5QGdtYWlsLmNvbSIsImlhdCI6MTc0NjE0MTU0MSwiZXhwIjoxNzQ2MTQ1MTQxfQ.6q5clyUEZtOdsJIizhD4IW-aBltPBSn1spW7N9GefH8
+
+{
+    "title": "The Pragmatic Programmer",
+    "year": 1999,
+    "author": "Andrew Hunt",
+    "imgUrl": "https://example.com/pragmatic.jpg",
+    "isbn": "978-0201616224",
+    "genre": "Programming"
+    
+    
+}
+

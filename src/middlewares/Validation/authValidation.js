@@ -10,3 +10,11 @@ export const newUserValidation = (req, res, next) => {
   };
   validateData({ req, res, next, obj });
 };
+
+export const loginValidation = (req, res, next) => {
+  const obj = {
+    email: Joi.string().required(),
+    password: Joi.string().required(),
+  };
+  validateData({ req, res, next, obj });
+};

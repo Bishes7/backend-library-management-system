@@ -45,3 +45,56 @@ B&B Enterprises
     `, // html body
   };
 };
+
+export const passwordOTPTemplate = ({ email, name, randomOTP }) => {
+  return {
+    from: `"Local Library" <${process.env.SMTP_EMAIL}>`,
+    to: email,
+    subject: "OTP to reset the password",
+    text: ` Hello ${name}, Here is your OTP to reset the password, ${randomOTP}  `,
+
+    html: `
+    <p>Hello ${name}</p>
+    <br/>
+<br/>
+<p>Here is your OTP to reset the password </p>
+<br/>
+<br/>
+<p> OTP is ${randomOTP}</p>
+<br/>
+
+Regards
+<br/>
+<br/>
+B&B Enterprises
+    
+    `,
+  };
+};
+
+// Password Updated
+export const passwordUpdateTemplate = ({ email, name }) => {
+  return {
+    from: `"Local Library" <${process.env.SMTP_EMAIL}> `,
+    to: email,
+    subject: "Password updated Successfully",
+    text: `Dear ${name}, Your password has been updated successfully, you can login now ! If this wasn't you, contact us immediately`,
+    html: `
+    <p>Dear ${name}</p>
+    <br/>
+    <br/>
+
+    <p>Your password has been changed successfully, feel free to login now</p>
+    <br/>
+    <br/>
+
+    Kind Regards
+    </br>
+    B&B Electronics
+
+
+    
+    
+    `,
+  };
+};

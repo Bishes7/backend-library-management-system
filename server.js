@@ -6,6 +6,8 @@ import authRouter from "./src/routers/authRouter.js";
 import { erroHandler } from "./src/middlewares/errorHandler.js";
 import { clientResponse } from "./src/middlewares/clientResponse.js";
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+import userRouter from "./src/routers/userRouter.js";
+import booksRouter from "./src/routers/booksRouter.js";
 
 const app = express();
 const PORT = process.env.PORT || 8000;
@@ -23,6 +25,8 @@ app.get("/", (req, res) => {
 
 // Controllers
 app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/user", userRouter);
+app.use("/api/v1/books", booksRouter);
 
 // importing DataBase Connection Function
 
