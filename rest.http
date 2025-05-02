@@ -84,7 +84,7 @@ Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNwZWNpY
     "imgUrl": "https://example.com/pragmatic.jpg",
     "isbn": "2564123654789",
     "genre": "Programming",
-    "description":"good Book"
+    "description":"Good Book"
     
     
 }
