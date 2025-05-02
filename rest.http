@@ -75,15 +75,16 @@ GET {{rootURl}}/api/v1/books
 ###POST Books
 POST {{rootURl}}/api/v1/books
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNwZWNpYWxiaXNoZXM5QGdtYWlsLmNvbSIsImlhdCI6MTc0NjE0MTU0MSwiZXhwIjoxNzQ2MTQ1MTQxfQ.6q5clyUEZtOdsJIizhD4IW-aBltPBSn1spW7N9GefH8
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNwZWNpYWxiaXNoZXM5QGdtYWlsLmNvbSIsImlhdCI6MTc0NjE2MDkyMCwiZXhwIjoxNzQ2MTY0NTIwfQ.UCkLr9_UeN7rElSPpOmvS7mE3SIomhm2r4rnRbOvqS8
 
 {
     "title": "The Pragmatic Programmer",
     "year": 1999,
     "author": "Andrew Hunt",
     "imgUrl": "https://example.com/pragmatic.jpg",
-    "isbn": "978-0201616224",
-    "genre": "Programming"
+    "isbn": "2564123654789",
+    "genre": "Programming",
+    "description":"good Book"
     
     
 }
