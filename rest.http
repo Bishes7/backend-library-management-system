@@ -89,3 +89,10 @@ Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNwZWNpY
     
 }
 
+### Get Books for Users
+GET {{rootURl}}/api/v1/books
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNwZWNpYWxiaXNoZXM5QGdtYWlsLmNvbSIsImlhdCI6MTc0NjIyMzYwOSwiZXhwIjoxNzQ2MjI3MjA5fQ.CYs4w-JOWHSW2flMfx4Hv_mTaBQ2jBBK1faq4Osu-qg 
+
+### GEt Books for Admins
+GET {{rootURl}}/api/v1/books/admin
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNwZWNpYWxiaXNoZXM5QGdtYWlsLmNvbSIsImlhdCI6MTc0NjI0OTMxMSwiZXhwIjoxNzQ2MjUyOTExfQ.gJbLqdqOonhjDpRZuv9EgfYODHLNOGVe-pf7I_vSTUI

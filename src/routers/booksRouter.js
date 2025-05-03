@@ -1,13 +1,15 @@
 import express from "express";
-import { insertNewbook } from "../controllers/booksController.js";
+import {
+  getAdminBooks,
+  getAllBooks,
+  insertNewbook,
+} from "../controllers/booksController.js";
 import {
   adminMiddleware,
   userAuthMiddleware,
 } from "../middlewares/Validation/authMiddleware.js";
 import { newBookValidation } from "../middlewares/Validation/bookValidation.js";
 const router = express.Router();
-
-export default router;
 
 // Get Books
 // router.get("/", userAuthMiddleware, adminMiddleware, insertNewbook);
@@ -20,3 +22,11 @@ router.post(
   newBookValidation,
   insertNewbook
 );
+
+// Get method for Books for Users
+router.get("/", getAllBooks);
+
+// Get Method for Admins
+router.get("/admin", userAuthMiddleware, adminMiddleware, getAdminBooks);
+
+export default router;

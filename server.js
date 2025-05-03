@@ -24,8 +24,11 @@ app.get("/", (req, res) => {
 });
 
 // Controllers
+// authentication
 app.use("/api/v1/auth", authRouter);
+// users
 app.use("/api/v1/user", userRouter);
+// books
 app.use("/api/v1/books", booksRouter);
 
 // importing DataBase Connection Function
