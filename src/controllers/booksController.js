@@ -1,6 +1,7 @@
 // Controllers for CRUD operations on Books
 
 import { clientResponse } from "../middlewares/clientResponse.js";
+import slugify from "slugify"
 import {
   createNewBook,
   getAllAdminBooks,
@@ -13,6 +14,7 @@ export const insertNewbook = async (req, res, next) => {
 
     const obj = {
       ...req.body,
+      slug:slugfy
       addedBy: { name: fName, adminId: _id },
       lastUpdateBy: { name: fName, adminId: _id },
     };

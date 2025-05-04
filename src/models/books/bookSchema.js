@@ -40,6 +40,20 @@ const bookSchema = new mongoose.Schema(
       type: Number,
     },
 
+    description: {
+      type: String,
+      required: true,
+    },
+    expectedAvailable: {
+      type: Date,
+      default: null,
+    },
+    slug: {
+      type: String,
+      unique: true,
+      index: 1,
+    },
+
     addedBy: {
       name: {
         type: String,
