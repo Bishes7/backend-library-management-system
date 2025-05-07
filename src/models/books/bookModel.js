@@ -14,3 +14,13 @@ export const getBooks = () => {
 export const getAllAdminBooks = (filter) => {
   return bookSchema.find(filter);
 };
+
+// update books query
+export const updateSelectedBooks = ({ _id, ...rest }) => {
+  return bookSchema.findByIdAndUpdate(_id, rest);
+};
+
+// Delete Book Query
+export const deleteSelectedBook = (_id) => {
+  return bookSchema.findByIdAndDelete(_id);
+};

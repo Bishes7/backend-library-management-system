@@ -75,7 +75,7 @@ GET {{rootURl}}/api/v1/books
 ###POST Books
 POST {{rootURl}}/api/v1/books
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNwZWNpYWxiaXNoZXM5QGdtYWlsLmNvbSIsImlhdCI6MTc0NjE2MDkyMCwiZXhwIjoxNzQ2MTY0NTIwfQ.UCkLr9_UeN7rElSPpOmvS7mE3SIomhm2r4rnRbOvqS8
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNwZWNpYWxiaXNoZXM5QGdtYWlsLmNvbSIsImlhdCI6MTc0NjQ5NDQxMCwiZXhwIjoxNzQ2NDk4MDEwfQ.5JbAeBW9wPSJS48xHUkfTvezRj4g1FUXvXHHiHGCesk 
 
 {
     "title": "The Pragmatic Programmer",
@@ -84,7 +84,7 @@ Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNwZWNpY
     "imgUrl": "https://example.com/pragmatic.jpg",
     "isbn": "2564123654789",
     "genre": "Programming",
-    "description":"Good Book"
+    "description":"This is the best book"
     
     
 }
@@ -95,4 +95,23 @@ Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNwZWNpY
 
 ### GEt Books for Admins
 GET {{rootURl}}/api/v1/books/admin
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNwZWNpYWxiaXNoZXM5QGdtYWlsLmNvbSIsImlhdCI6MTc0NjI0OTMxMSwiZXhwIjoxNzQ2MjUyOTExfQ.gJbLqdqOonhjDpRZuv9EgfYODHLNOGVe-pf7I_vSTUI
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNwZWNpYWxiaXNoZXM5QGdtYWlsLmNvbSIsImlhdCI6MTc0NjQ5NDc0NywiZXhwIjoxNzQ2NDk4MzQ3fQ.gaHr3kHukB-GVKtD78SDOUsy8OK_Q6WvgZfbaUf4efM 
+
+### Update Books
+PUT {{rootURl}}/api/v1/books
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNwZWNpYWxiaXNoZXM5QGdtYWlsLmNvbSIsImlhdCI6MTc0NjUyMDQ0OCwiZXhwIjoxNzQ2NTI0MDQ4fQ.kCj1mXT7kksDKvqKtxkPpbojClKQ317oiLhCStns6H4
+
+    {
+      "_id": "68174bd9ce3d36f6d1d93335",
+      "status": "inactive",
+      "title": "Javascript the book",
+      "year": "1997",
+      "author": "Lab Bhandari",
+      "imgUrl": "https://example.com/pragmatic.jpg",
+      "genre": "Programming",
+      "available": true,
+      "description": "sdfasdfsda",
+      "expectedAvailable": null,
+      "slug": "python-the-book"
+      
+    }

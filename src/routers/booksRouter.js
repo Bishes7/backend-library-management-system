@@ -1,14 +1,19 @@
 import express from "express";
 import {
+  deleteBookController,
   getAdminBooks,
   getAllBooks,
   insertNewbook,
+  updateBooks,
 } from "../controllers/booksController.js";
 import {
   adminMiddleware,
   userAuthMiddleware,
 } from "../middlewares/Validation/authMiddleware.js";
-import { newBookValidation } from "../middlewares/Validation/bookValidation.js";
+import {
+  newBookValidation,
+  updateBookValidation,
+} from "../middlewares/Validation/bookValidation.js";
 const router = express.Router();
 
 // Get Books
@@ -21,6 +26,23 @@ router.post(
   adminMiddleware,
   newBookValidation,
   insertNewbook
+);
+
+// Update Books
+router.put(
+  "/",
+  userAuthMiddleware,
+  adminMiddleware,
+  updateBookValidation,
+  updateBooks
+);
+
+// Delete Books
+router.delete(
+  "/:_id",
+  userAuthMiddleware,
+  adminMiddleware,
+  deleteBookController
 );
 
 // Get method for Books for Users
