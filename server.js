@@ -16,6 +16,7 @@ const PORT = process.env.PORT || 8000;
 app.use(cors());
 app.use(morgan("dev"));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // GET Method for server
 app.get("/", (req, res) => {

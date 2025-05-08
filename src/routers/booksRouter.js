@@ -1,4 +1,7 @@
 import express from "express";
+import multer from "multer";
+import path from "path";
+
 import {
   deleteBookController,
   getAdminBooks,
@@ -16,15 +19,45 @@ import {
 } from "../middlewares/Validation/bookValidation.js";
 const router = express.Router();
 
-// Get Books
-// router.get("/", userAuthMiddleware, adminMiddleware, insertNewbook);
+// Multer setup
+// const upload = multer({ dest: "uploads/" });
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "./public");
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+    const filePath = uniqueSuffix + "-" + file.originalname;
+
+    cb(null, filePath);
+  },
+});
+
+// filter to allow images only
+const fileFilter = (req, file, cb) => {
+  const allowedFiletypes = /jpeg|jpg|png|webp/;
+  const extName = path.extname(file.originalname).toLowerCase();
+  const isAllowedExt = allowedFiletypes.test(extName);
+  const mimeType = allowedFiletypes.test(file.mimeType);
+
+  if (isAllowedExt && mimeType) {
+    cb(null, true);
+  } else {
+    cb(new Error("Only jpeg|jpg|png|webp are allowed "), false);
+  }
+};
+
+const upload = multer({ storage: storage, fileFilter });
 
 // Post Books
 router.post(
   "/",
   userAuthMiddleware,
   adminMiddleware,
+  upload.array("image", 2),
   newBookValidation,
+
   insertNewbook
 );
 
