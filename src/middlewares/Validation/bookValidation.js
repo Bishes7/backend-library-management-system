@@ -7,7 +7,7 @@ export const newBookValidation = (req, res, next) => {
     title: Joi.string().required(),
     year: Joi.number().integer().min(1901).max(new Date().getFullYear()),
     author: Joi.string().required(),
-    imgUrl: Joi.string().required(),
+    // imgUrl: Joi.string().required(),
     isbn: Joi.string()
       .pattern(/^\d{10}$|^\d{13}$/)
       .messages({
@@ -28,7 +28,6 @@ export const updateBookValidation = (req, res, next) => {
     title: Joi.string().required(),
     year: Joi.number().integer().min(1901).max(new Date().getFullYear()),
     author: Joi.string().required(),
-    imgUrl: Joi.string().required(),
     genre: Joi.string().required(),
     description: Joi.string().required(),
     expectedAvailable: Joi.date().allow(null, ""),

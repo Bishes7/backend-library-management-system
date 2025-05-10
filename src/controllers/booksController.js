@@ -14,12 +14,14 @@ import {
 export const insertNewbook = async (req, res, next) => {
   try {
     const { fName, _id } = req.userInfo;
+    const { path } = req.file;
 
     const obj = {
       ...req.body,
       slug: slugify(req.body.title, { lower: true }),
       addedBy: { name: fName, adminId: _id },
       lastUpdateBy: { name: fName, adminId: _id },
+      imgUrl: path,
     };
     // adding book query
     const book = await createNewBook(obj);

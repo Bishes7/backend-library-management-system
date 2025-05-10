@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+// net start MongoDB  - if stopped , cmd in bash
 
 export const dbConnect = () => {
   if (!process.env.MONGO_URL) {
