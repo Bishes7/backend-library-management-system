@@ -1,6 +1,7 @@
 // Controllers for CRUD operations on Books
 
 import { clientResponse } from "../middlewares/clientResponse.js";
+import { deleteFile } from "../utils/fileImg.js";
 import slugify from "slugify";
 import {
   createNewBook,
@@ -22,6 +23,7 @@ export const insertNewbook = async (req, res, next) => {
       addedBy: { name: fName, adminId: _id },
       lastUpdateBy: { name: fName, adminId: _id },
       imgUrl: path,
+      imageList: [path],
     };
     // adding book query
     const book = await createNewBook(obj);
@@ -54,6 +56,14 @@ export const insertNewbook = async (req, res, next) => {
 export const updateBooks = async (req, res, next) => {
   try {
     const { _id, fName } = req.userInfo;
+
+    if (Array.isArray(req.files)) {
+      req.body.imageList = [
+        ...req.body.imageList.split(","),
+        ...req.files.map((obj) => obj.path),
+      ];
+    }
+
     const obj = {
       ...req.body,
       lastUpdateBy: { name: fName, adminId: _id },
@@ -82,12 +92,14 @@ export const updateBooks = async (req, res, next) => {
 export const getAllBooks = async (req, res, next) => {
   try {
     const books = await getBooks();
-    clientResponse({
-      req,
-      res,
-      message: "Here is the list of books",
-      payload: books,
-    });
+    if (books?._id) {
+      clientResponse({
+        req,
+        res,
+        message: "Here is the list of books",
+        payload: books,
+      });
+    }
     clientResponse({
       req,
       res,
@@ -119,6 +131,7 @@ export const deleteBookController = async (req, res, next) => {
     const { _id } = req.params;
 
     const book = await deleteSelectedBook(_id);
+    book.imageList.map((img) => deleteFile(img));
     book?._id
       ? clientResponse({
           req,

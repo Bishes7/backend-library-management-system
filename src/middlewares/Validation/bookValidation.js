@@ -22,6 +22,8 @@ export const newBookValidation = (req, res, next) => {
 // validation for upadted books
 
 export const updateBookValidation = (req, res, next) => {
+  req.body.expectedAvailable =
+    req.body.expectedAvailable === "null" ? null : req.body.expectedAvailable;
   const obj = {
     status: Joi.string().valid("active", "inactive").required(),
     _id: Joi.string().required(),
@@ -31,6 +33,8 @@ export const updateBookValidation = (req, res, next) => {
     genre: Joi.string().required(),
     description: Joi.string().required(),
     expectedAvailable: Joi.date().allow(null, ""),
+    imgUrl: Joi.string().required(),
+    imageList: Joi.string().required().allow(""),
   };
   validateData({ req, res, next, obj });
 };
