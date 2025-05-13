@@ -24,3 +24,13 @@ export const updateSelectedBooks = ({ _id, ...rest }) => {
 export const deleteSelectedBook = (_id) => {
   return bookSchema.findByIdAndDelete(_id);
 };
+
+// Saving DummyBooks in Database
+export const InsertManyBooks = (booksArr) => {
+  return bookSchema.insertMany(booksArr, { ordered: false });
+};
+
+// Deleting DummyBooks in Database
+export const DeleteAllBooks = () => {
+  return bookSchema.deleteMany({});
+};
