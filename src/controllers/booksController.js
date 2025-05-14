@@ -92,15 +92,16 @@ export const updateBooks = async (req, res, next) => {
 export const getAllBooks = async (req, res, next) => {
   try {
     const books = await getBooks();
-    if (books?._id) {
-      clientResponse({
+    if (Array.isArray(books) && books.length > 0) {
+      return clientResponse({
         req,
         res,
         message: "Here is the list of books",
         payload: books,
       });
     }
-    clientResponse({
+
+    return clientResponse({
       req,
       res,
       message: "Error loading available book as this time",

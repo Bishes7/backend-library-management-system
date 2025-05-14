@@ -48,7 +48,7 @@ router.delete(
 );
 
 // Get method for Books for Users
-router.get("/", getAllBooks);
+router.get("/", getAllBooks); // ✅ No auth middleware like isUserAuth
 
 // Get Method for Admins
 router.get("/admin", userAuthMiddleware, adminMiddleware, getAdminBooks);
