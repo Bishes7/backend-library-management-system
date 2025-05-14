@@ -4,6 +4,7 @@ import {
   deleteBookController,
   getAdminBooks,
   getAllBooks,
+  getSinglePublicBook,
   insertNewbook,
   updateBooks,
 } from "../controllers/booksController.js";
@@ -47,8 +48,11 @@ router.delete(
   deleteBookController
 );
 
-// Get method for Books for Users
+// Get method for all Books for Users
 router.get("/", getAllBooks); // ✅ No auth middleware like isUserAuth
+
+// Public API for single Book
+router.get("/public/:slug", getSinglePublicBook);
 
 // Get Method for Admins
 router.get("/admin", userAuthMiddleware, adminMiddleware, getAdminBooks);

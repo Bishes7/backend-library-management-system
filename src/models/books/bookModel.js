@@ -10,6 +10,11 @@ export const getBooks = () => {
   return bookSchema.find({ status: "active" });
 };
 
+// get single PUblic Book
+export const getsingleBook = (filter) => {
+  return bookSchema.findOne(filter);
+};
+
 // get books for admins
 export const getAllAdminBooks = (filter) => {
   return bookSchema.find(filter);

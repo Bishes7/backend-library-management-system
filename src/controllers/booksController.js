@@ -8,6 +8,7 @@ import {
   deleteSelectedBook,
   getAllAdminBooks,
   getBooks,
+  getsingleBook,
   updateSelectedBooks,
 } from "../models/books/bookModel.js";
 
@@ -120,6 +121,22 @@ export const getAdminBooks = async (req, res, next) => {
       res,
       message: "Here is the books for admins only",
       payload: books,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// Get SIngle Book for user
+export const getSinglePublicBook = async (req, res, next) => {
+  try {
+    const { slug } = req.params;
+    const payload = await getsingleBook({ slug, status: "active" });
+    clientResponse({
+      req,
+      res,
+      payload,
+      message: "Here is the list of the selected books only",
     });
   } catch (error) {
     next(error);
