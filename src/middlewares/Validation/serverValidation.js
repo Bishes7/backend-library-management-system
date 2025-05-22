@@ -4,7 +4,9 @@ import { deleteUploadedFiles } from "../../utils/fileImg.js";
 
 export const validateData = ({ req, res, next, obj }) => {
   // create schema or rules
-  const schema = joi.object(obj);
+  const schema = Array.isArray(req.body)
+    ? joi.array().items(obj)
+    : joi.object(obj);
   // pass your data, req.body to the schema
   const { error } = schema.validate(req.body);
 

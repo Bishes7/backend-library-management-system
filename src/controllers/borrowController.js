@@ -1,5 +1,8 @@
-import { clientResponse } from "../middlewares/clientResponse";
-import { insertBorrowBook } from "../models/borrowHistory/borrowHistoryModel";
+import { clientResponse } from "../middlewares/clientResponse.js";
+import {
+  getAllBorrowsData,
+  insertBorrowsBook,
+} from "../models/borrowHistory/borrowHistoryModel.js";
 
 const bookDueDays = 15;
 
@@ -10,18 +13,21 @@ export const insertNewBorrow = async (req, res, next) => {
     let today = new Date();
     const dueDate = today.setDate(today.getDate() + bookDueDays);
 
-    const obj = {
-      ...req.body,
-      dueDate,
-      userId: _id,
-    };
+    req.body = req.body.map((book) => {
+      return {
+        ...book,
+        userId: _id,
+        dueDate,
+      };
+    });
 
-    const borrow = await insertBorrowBook(obj);
-    borrow._id
+    const borrow = await insertBorrowsBook(req.body);
+    Array.isArray(borrow)
       ? clientResponse({
           req,
           res,
           message: " The book has been borrowed successfully",
+          payload: borrow,
         })
       : clientResponse({
           req,
@@ -29,6 +35,27 @@ export const insertNewBorrow = async (req, res, next) => {
           message: "Unable to borrow the book at this time",
           statusCode: 401,
         });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// get borrows books
+export const getBorrowsBooks = async (req, res, next) => {
+  try {
+    const { _id, role } = req.userInfo;
+
+    const isAdmin = role === "admin";
+
+    const borrows = isAdmin
+      ? await getAllBorrowsData()
+      : await getAllBorrowsData({ userId: _id });
+    clientResponse({
+      req,
+      res,
+      message: "Here is the list of the borrowed books",
+      payload: borrows,
+    });
   } catch (error) {
     next(error);
   }

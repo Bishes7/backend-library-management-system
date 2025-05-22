@@ -95,11 +95,11 @@ Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNwZWNpY
 
 ### GEt Books for Admins
 GET {{rootURl}}/api/v1/books/admin
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNwZWNpYWxiaXNoZXM5QGdtYWlsLmNvbSIsImlhdCI6MTc0NjQ5NDc0NywiZXhwIjoxNzQ2NDk4MzQ3fQ.gaHr3kHukB-GVKtD78SDOUsy8OK_Q6WvgZfbaUf4efM 
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNwZWNpYWxiaXNoZXM5QGdtYWlsLmNvbSIsImlhdCI6MTc0NzcyMDQ1NSwiZXhwIjoxNzQ3NzI0MDU1fQ.s0eb8CoJiRqn1HdcZUGOXe20psBdkjxtYw-tbijx3kc
 
 ### Update Books
 PUT {{rootURl}}/api/v1/books
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNwZWNpYWxiaXNoZXM5QGdtYWlsLmNvbSIsImlhdCI6MTc0NjUyMDQ0OCwiZXhwIjoxNzQ2NTI0MDQ4fQ.kCj1mXT7kksDKvqKtxkPpbojClKQ317oiLhCStns6H4
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNwZWNpYWxiaXNoZXM5QGdtYWlsLmNvbSIsImlhdCI6MTc0NzcyMDQ1NSwiZXhwIjoxNzQ3NzI0MDU1fQ.s0eb8CoJiRqn1HdcZUGOXe20psBdkjxtYw-tbijx3kc
 
     {
       "_id": "68174bd9ce3d36f6d1d93335",
@@ -115,3 +115,17 @@ Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNwZWNpY
       "slug": "python-the-book"
       
     }
+
+### Borrow Books
+POST {{rootURl}}/api/v1/borrows
+Content-Type: application/json
+Authorization:bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNwZWNpYWxiaXNoZXM5QGdtYWlsLmNvbSIsImlhdCI6MTc0NzcyMTM2NCwiZXhwIjoxNzQ3NzI0OTY0fQ.Z-HXhcsaIrxh5uThEEFWAaoRd8RSxcI-kN40zPMoekw
+
+[
+     {
+    "bookId":"682c1925d2f73be1a8bcd320",
+    "thumbnail":"https://m.media-amazon.com/images/I/41SH-SvWPxL.jpg",
+    "bookTitle":"Clean Code: A Handbook of Agile Software Craftsmanship"
+
+    }
+]

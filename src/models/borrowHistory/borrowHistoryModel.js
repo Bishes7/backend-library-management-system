@@ -1,7 +1,18 @@
 // insert new borrow book
 
-import borrowHistorySchema from "./borrowHistorySchema";
+import borrowHistorySchema from "./borrowHistorySchema.js";
 
-export const insertBorrowBook = (borrowobj) => {
-  return borrowHistorySchema(borrowobj).save();
+// for borrowing single books
+// export const insertBorrowBook = (borrowobj) => {
+//   return borrowHistorySchema(borrowobj).save();
+// };
+
+//  for borrowing multipe books
+export const insertBorrowsBook = (borrowArr) => {
+  return borrowHistorySchema.insertMany(borrowArr);
+};
+
+// use filter to borrow for specific users
+export const getAllBorrowsData = (filter) => {
+  return borrowHistorySchema.find(filter);
 };
