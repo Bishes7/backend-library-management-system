@@ -43,11 +43,12 @@ export const insertNewBorrow = async (req, res, next) => {
 // get borrows books
 export const getBorrowsBooks = async (req, res, next) => {
   try {
-    const { _id, role } = req.userInfo;
+    const { _id } = req.userInfo;
+    const path = req.path;
 
-    const isAdmin = role === "admin";
+    const admin = path === "/admin";
 
-    const borrows = isAdmin
+    const borrows = admin
       ? await getAllBorrowsData()
       : await getAllBorrowsData({ userId: _id });
     clientResponse({
