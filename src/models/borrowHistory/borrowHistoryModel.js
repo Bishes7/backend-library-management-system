@@ -16,3 +16,8 @@ export const insertBorrowsBook = (borrowArr) => {
 export const getAllBorrowsData = (filter) => {
   return borrowHistorySchema.find(filter);
 };
+
+// update the borrow table
+export const updateBorrowsTable = (filter, obj) => {
+  return borrowHistorySchema.findOneAndUpdate(filter, obj);
+};

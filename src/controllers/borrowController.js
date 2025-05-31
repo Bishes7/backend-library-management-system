@@ -1,7 +1,9 @@
 import { clientResponse } from "../middlewares/clientResponse.js";
+import { updateSelectedBooks } from "../models/books/bookModel.js";
 import {
   getAllBorrowsData,
   insertBorrowsBook,
+  updateBorrowsTable,
 } from "../models/borrowHistory/borrowHistoryModel.js";
 
 const bookDueDays = 15;
@@ -22,6 +24,12 @@ export const insertNewBorrow = async (req, res, next) => {
     });
 
     const borrow = await insertBorrowsBook(req.body);
+    if (borrow.length) {
+      borrow.map(async ({ bookId }) => {
+        await updateSelectedBooks({ _id: bookId, expectedAvailable: dueDate });
+      });
+    }
+
     Array.isArray(borrow)
       ? clientResponse({
           req,
@@ -56,6 +64,51 @@ export const getBorrowsBooks = async (req, res, next) => {
       res,
       message: "Here is the list of the borrowed books",
       payload: borrows,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// return borrowed books
+export const returnBorrowedBooks = async (req, res, next) => {
+  try {
+    const { _id } = req.userInfo;
+
+    // get the userID and borrow ID
+    const filter = {
+      _id: req.body._id,
+      userId: _id,
+    };
+    const obj = {
+      isReturned: true,
+      retunedDate: Date.now(),
+    };
+    // update borrow table
+
+    const result = await updateBorrowsTable(filter, obj);
+    if (result?._id) {
+      // update book table : expectedAvailable : null
+
+      const updateBook = await updateSelectedBooks({
+        _id: result.bookId,
+        expectedAvailable: null,
+      });
+      // ToDO : send email notification
+      if (updateBook?._id) {
+        return clientResponse({
+          req,
+          res,
+          message: "Your book has been returned successfully",
+        });
+      }
+    }
+
+    clientResponse({
+      req,
+      res,
+      message: "Unable to return the book at this time",
+      statusCode: 400,
     });
   } catch (error) {
     next(error);

@@ -6,6 +6,7 @@ import {
 import {
   getBorrowsBooks,
   insertNewBorrow,
+  returnBorrowedBooks,
 } from "../controllers/borrowController.js";
 import { borrowDataValidaton } from "../middlewares/Validation/borrowDataValidation.js";
 
@@ -19,5 +20,8 @@ router.get("/admin", userAuthMiddleware, adminMiddleware, getBorrowsBooks);
 
 // return borrow books for users only
 router.get("/user", userAuthMiddleware, getBorrowsBooks);
+
+// return the books back to the library
+router.patch("/", userAuthMiddleware, returnBorrowedBooks);
 
 export default router;

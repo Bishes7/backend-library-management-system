@@ -129,3 +129,12 @@ Authorization:bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNwZWNpYW
 
     }
 ]
+
+### return book
+PATCH {{rootURl}}/api/v1/borrows
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNwZWNpYWxiaXNoZXM5QGdtYWlsLmNvbSIsImlhdCI6MTc0ODYxMTU2MCwiZXhwIjoxNzQ4NjE1MTYwfQ.RuXnqWz6920yUa-IB8_tQk5hqNAwP1FOjKfzItzUzAk
+
+{
+    "_id": "68343e0b089b9bc4aac2ea21"
+}
