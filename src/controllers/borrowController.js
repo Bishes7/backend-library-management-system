@@ -82,9 +82,10 @@ export const returnBorrowedBooks = async (req, res, next) => {
     };
     const obj = {
       isReturned: true,
-      retunedDate: Date.now(),
+      returnedDate: Date.now(),
     };
-    // update borrow table
+
+    // update borrow table // returning the books
 
     const result = await updateBorrowsTable(filter, obj);
     if (result?._id) {

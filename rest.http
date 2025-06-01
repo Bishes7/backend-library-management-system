@@ -138,3 +138,17 @@ Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNwZWNpY
 {
     "_id": "68343e0b089b9bc4aac2ea21"
 }
+
+### Create Reviews
+###POST Reviews
+POST {{rootURl}}/api/v1/reviews
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNwZWNpYWxiaXNoZXM5QGdtYWlsLmNvbSIsImlhdCI6MTc0ODc3NzI5OSwiZXhwIjoxNzQ4NzgwODk5fQ.VUK3ULRXkyBxvv_17F8r5X8h1ZTReGyrE82bCnbsw0U
+
+{
+    "bookId":"68343deaff67281f0ec61a5c",
+    "title": "Awesome Book",
+    "reviewMessage": "This is the best book i have ever read",
+    "rating": 5,
+    "borrowId":"68343e0b089b9bc4aac2ea21"
+}
