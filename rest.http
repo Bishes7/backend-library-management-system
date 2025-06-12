@@ -142,7 +142,7 @@ Authorization:bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNwZWNpYW
 ###POST Reviews
 POST {{rootURl}}/api/v1/reviews
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNwZWNpYWxiaXNoZXM5QGdtYWlsLmNvbSIsImlhdCI6MTc0ODc4Mzg2NCwiZXhwIjoxNzQ4Nzg3NDY0fQ.ug5MAKTP02euXfqjo-POYpsCyVYO1aLpSpVo8NnCedE 
+Authorization:bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNwZWNpYWxiaXNoZXM5QGdtYWlsLmNvbSIsImlhdCI6MTc0OTYzNzQyNywiZXhwIjoxNzQ5NjQxMDI3fQ.3mmf1Tw9hiIKNO9xn_OWVpVWMjDaGuD9BcAUFlDRVKM 
 
 {
     "bookId":"68343deaff67281f0ec61a5c",
@@ -151,3 +151,7 @@ Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNwZWNpY
     "rating": 5,
     "borrowId":"68343e0b089b9bc4aac2ea21"
 }
+
+### GET Reviews
+GET {{rootURl}}/api/v1/reviews
+Authorization:bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNwZWNpYWxiaXNoZXM5QGdtYWlsLmNvbSIsImlhdCI6MTc0OTcxMjU3OSwiZXhwIjoxNzQ5NzE2MTc5fQ.CKV1HQa-pEMm6T4IY6stGa2wrEYKGApKnAQ9VKLvr64
