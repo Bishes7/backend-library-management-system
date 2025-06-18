@@ -1,6 +1,10 @@
 import { clientResponse } from "../middlewares/clientResponse.js";
 import { updateBorrowsTable } from "../models/borrowHistory/borrowHistoryModel.js";
-import { createReview, getReviews } from "../models/review/reviewModel.js";
+import {
+  createReview,
+  getReviews,
+  updateReview,
+} from "../models/review/reviewModel.js";
 
 export const insertNewReviews = async (req, res, next) => {
   try {
@@ -48,14 +52,33 @@ export const getAllReviews = async (req, res, next) => {
   try {
     const filter = {};
 
-    if (req.userInfo?.role !== "admin") {
+    if (!req.userInfo || req?.userInfo?.role !== "admin") {
       filter.isApproved = true;
     }
-    console.log("User Info in controller:", req.userInfo);
 
     const payload = await getReviews(filter);
 
     clientResponse({ req, res, payload, message: "Here are the reviews" });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// update review controller
+export const updateReviewStatus = async (req, res, next) => {
+  try {
+    const { _id, isApproved } = req.body;
+
+    const result = await updateReview({ _id, isApproved });
+
+    result?._id
+      ? clientResponse({ req, res, message: "Review updated successfully " })
+      : clientResponse({
+          req,
+          res,
+          statusCode: 400,
+          message: "Error updating review at this time",
+        });
   } catch (error) {
     next(error);
   }

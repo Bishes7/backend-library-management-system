@@ -20,6 +20,7 @@ import { comparePassword, encryptPasword } from "../utils/bcrypt.js";
 import { v4 as uuidv4 } from "uuid";
 import { getjwts } from "../utils/jwt.js";
 import { generateOTP } from "../utils/randomNumGenerator.js";
+const frontendURL = process.env.FRONTEND_URL || "http://localhost:5173";
 
 // Insert New User
 export const insertNewUser = async (req, res, next) => {
@@ -39,7 +40,7 @@ export const insertNewUser = async (req, res, next) => {
       const session = await createNewSession(newSessionObj);
       // send an activation link to their mail
       if (session?._id) {
-        const url = `${process.env.ROOT_URL}/activate-user?sessionid=${session._id}&t=${session.token}`;
+        const url = `${frontendURL}/activate-user?sessionid=${session._id}&t=${session.token}`;
 
         const emailId = await userActivationLink({
           email: users.email,

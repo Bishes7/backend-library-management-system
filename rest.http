@@ -155,3 +155,13 @@ Authorization:bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNwZWNpYW
 ### GET Reviews
 GET {{rootURl}}/api/v1/reviews
 Authorization:bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNwZWNpYWxiaXNoZXM5QGdtYWlsLmNvbSIsImlhdCI6MTc0OTcxMjU3OSwiZXhwIjoxNzQ5NzE2MTc5fQ.CKV1HQa-pEMm6T4IY6stGa2wrEYKGApKnAQ9VKLvr64
+
+### PATCH Reviews
+PATCH {{rootURl}}/api/v1/reviews/admin
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNwZWNpYWxiaXNoZXM5QGdtYWlsLmNvbSIsImlhdCI6MTc0OTc5NTUwNCwiZXhwIjoxNzQ5Nzk5MTA0fQ.MvvLcfmZPnwLMUVhz43D1PgUkPAGVfyk8qsPBbusL7E
+
+{
+    "_id": "684bc2884c1e148431aa66eb",
+    "isApproved": true
+}

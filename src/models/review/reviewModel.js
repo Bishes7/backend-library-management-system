@@ -16,3 +16,8 @@ export const getReviews = (filter) => {
     })
     .sort({ updatedAt: -1 });
 };
+
+// update review status
+export const updateReview = ({ _id, ...rest }) => {
+  return reviewSchema.findByIdAndUpdate(_id, rest);
+};

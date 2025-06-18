@@ -8,5 +8,13 @@ export const emailTransporter = () => {
       pass: process.env.SMTP_PASS,
     },
   });
+
+  transporter.verify((error, success) => {
+    if (error) {
+      console.log("SMTP connection error", error);
+    } else {
+      console.log("SMTP server is ready to send emails");
+    }
+  });
   return transporter;
 };
