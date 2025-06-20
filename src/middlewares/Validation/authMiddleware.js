@@ -1,5 +1,9 @@
 import { checkToken } from "../../models/session/sessionModel.js";
-import { getUser, getUserByEmail } from "../../models/user/userModel.js";
+import {
+  getUser,
+  getUserByEmail,
+  getWeeklyUserStats,
+} from "../../models/user/userModel.js";
 import {
   accessJWT,
   VerifyExcessJWT,
@@ -81,4 +85,15 @@ export const renewAccessJWT = async (req, res, next) => {
     }
   }
   clientResponse({ req, res, message, statusCode: 401 });
+};
+
+// get weekly user stats
+
+export const getWeeklyUserStatsController = async (req, res, next) => {
+  try {
+    const stats = await getWeeklyUserStats();
+    res.json(stats);
+  } catch (error) {
+    next(error);
+  }
 };

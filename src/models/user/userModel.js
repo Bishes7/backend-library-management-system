@@ -19,3 +19,21 @@ export const getUserByEmail = (email) => {
 export const getUser = (filter) => {
   return userSchema.findOne(filter);
 };
+
+// get weekly user stats
+export const getWeeklyUserStats = async () => {
+  const results = await userSchema.aggregate([
+    {
+      $group: {
+        _id: {
+          $isoWeek: "$createdAt",
+        },
+        count: { $sum: 1 },
+      },
+    },
+    { $sort: { _id: 1 } },
+  ]);
+
+  const labels = results.map((r, i) => `week ${i + 1}`);
+  const data = results.map((r) => r.count);
+};

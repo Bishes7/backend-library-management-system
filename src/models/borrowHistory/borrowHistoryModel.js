@@ -21,3 +21,23 @@ export const getAllBorrowsData = (filter) => {
 export const updateBorrowsTable = (filter, obj) => {
   return borrowHistorySchema.findOneAndUpdate(filter, obj);
 };
+
+// borrow chart
+export const getWeeklyBorrowStats = async () => {
+  const results = await borrowHistorySchema.aggregate([
+    {
+      $group: {
+        _id: {
+          $isoWeek: "$createdAt", // groups by ISo week number
+        },
+        count: { $sum: 1 },
+      },
+    },
+    { $sort: { _id: 1 } },
+  ]);
+
+  const labels = results.map((r, i) => `week ${i + 1}`);
+  const data = results.map((r) => r.count);
+
+  return { labels, data };
+};

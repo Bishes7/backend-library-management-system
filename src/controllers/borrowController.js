@@ -2,6 +2,7 @@ import { clientResponse } from "../middlewares/clientResponse.js";
 import { updateSelectedBooks } from "../models/books/bookModel.js";
 import {
   getAllBorrowsData,
+  getWeeklyBorrowStats,
   insertBorrowsBook,
   updateBorrowsTable,
 } from "../models/borrowHistory/borrowHistoryModel.js";
@@ -111,6 +112,16 @@ export const returnBorrowedBooks = async (req, res, next) => {
       message: "Unable to return the book at this time",
       statusCode: 400,
     });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// borrow charts controller
+export const getWeeklyBorrowsStatsController = async (req, res, next) => {
+  try {
+    const stats = await getWeeklyBorrowStats();
+    res.json(stats);
   } catch (error) {
     next(error);
   }

@@ -1,5 +1,9 @@
 import express from "express";
-import { userAuthMiddleware } from "../middlewares/Validation/authMiddleware.js";
+import {
+  adminMiddleware,
+  getWeeklyUserStatsController,
+  userAuthMiddleware,
+} from "../middlewares/Validation/authMiddleware.js";
 import { clientResponse } from "../middlewares/clientResponse.js";
 
 const router = express.Router();
@@ -18,5 +22,13 @@ router.get("/profile", userAuthMiddleware, async (req, res) => {
     payload: user,
   });
 });
+
+// get weekly user stats
+router.get(
+  "/stats/weekly",
+  userAuthMiddleware,
+  adminMiddleware,
+  getWeeklyUserStatsController
+);
 
 export default router;
