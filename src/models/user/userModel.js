@@ -36,4 +36,6 @@ export const getWeeklyUserStats = async () => {
 
   const labels = results.map((r, i) => `week ${i + 1}`);
   const data = results.map((r) => r.count);
+
+  return { labels, data };
 };

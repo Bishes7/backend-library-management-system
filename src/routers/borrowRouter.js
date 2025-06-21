@@ -26,7 +26,7 @@ router.get("/user", userAuthMiddleware, getBorrowsBooks);
 // return the books back to the library
 router.patch("/", userAuthMiddleware, returnBorrowedBooks);
 
-// Route for borrow stats by month
+// Route for borrow stats chart by month
 router.get(
   "/stats/weekly",
   userAuthMiddleware,

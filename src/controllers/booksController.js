@@ -7,8 +7,10 @@ import {
   createNewBook,
   deleteSelectedBook,
   getAllAdminBooks,
+  getBookCategoryStats,
   getBooks,
   getsingleBook,
+  recentBooksChart,
   updateSelectedBooks,
 } from "../models/books/bookModel.js";
 
@@ -162,6 +164,26 @@ export const deleteBookController = async (req, res, next) => {
           message: "Unable to delete the book at this time",
           statusCode: 400,
         });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// get books stats chart
+export const getBooksCategoryController = async (req, res, next) => {
+  try {
+    const stats = await getBookCategoryStats();
+    res.json(stats);
+  } catch (error) {
+    next(error);
+  }
+};
+
+// get recent books chart
+export const getRecentBooksController = async (req, res, next) => {
+  try {
+    const response = await recentBooksChart();
+    res.json(response);
   } catch (error) {
     next(error);
   }

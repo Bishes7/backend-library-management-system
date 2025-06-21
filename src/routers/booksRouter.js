@@ -4,6 +4,7 @@ import {
   deleteBookController,
   getAdminBooks,
   getAllBooks,
+  getBooksCategoryController,
   getSinglePublicBook,
   insertNewbook,
   updateBooks,
@@ -17,6 +18,7 @@ import {
   updateBookValidation,
 } from "../middlewares/Validation/bookValidation.js";
 import { upload } from "../utils/multer.js";
+
 const router = express.Router();
 
 // Post Books
@@ -57,4 +59,14 @@ router.get("/public/:slug", getSinglePublicBook);
 // Get Method for Admins
 router.get("/admin", userAuthMiddleware, adminMiddleware, getAdminBooks);
 
+// get book category chart stats
+router.get(
+  "/stats/categories",
+  userAuthMiddleware,
+  adminMiddleware,
+  getBooksCategoryController
+);
+
+// route for borrow status chart
+router.get("/borrow-status", userAuthMiddleware, adminMiddleware);
 export default router;

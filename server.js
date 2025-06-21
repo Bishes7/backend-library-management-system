@@ -10,6 +10,7 @@ import userRouter from "./src/routers/userRouter.js";
 import booksRouter from "./src/routers/booksRouter.js";
 import borrowsRouter from "./src/routers/borrowRouter.js";
 import reviewsRouter from "./src/routers/reviewRouter.js";
+import statsRouter from "./src/routers/statsRouter.js";
 
 const app = express();
 const PORT = process.env.PORT || 8000;
@@ -38,6 +39,8 @@ app.use("/api/v1/books", booksRouter);
 app.use("/api/v1/borrows", borrowsRouter);
 
 app.use("/api/v1/reviews", reviewsRouter);
+
+app.use("/api/stats", statsRouter);
 
 // importing DataBase Connection Function
 

@@ -39,3 +39,43 @@ export const InsertManyBooks = (booksArr) => {
 export const DeleteAllBooks = () => {
   return bookSchema.deleteMany({});
 };
+
+// book category stats chart model
+export const getBookCategoryStats = async () => {
+  const results = await bookSchema.aggregate([
+    {
+      $group: {
+        _id: "$genre", // group by categories
+        count: { $sum: 1 },
+      },
+    },
+    { $sort: { count: -1 } },
+  ]);
+
+  const labels = results.map((r) => r._id);
+  const data = results.map((r) => r.count);
+
+  return { labels, data };
+};
+
+// book status chart
+export const getBorrowStatus = async () => {
+  const results = await bookSchema.aggregate([
+    {
+      $group: {
+        _id: "$status",
+        count: { $sum: 1 },
+      },
+    },
+  ]);
+
+  const labels = results.map((r) => r._id);
+  const data = results.map((r) => r.count);
+
+  return { labels, data };
+};
+
+// recent books chart
+export const recentBooksChart = async () => {
+  const books = await bookSchema.find().sort({ createdAt: -1 }).limit(5);
+};

@@ -117,7 +117,7 @@ export const returnBorrowedBooks = async (req, res, next) => {
   }
 };
 
-// borrow charts controller
+// borrow stats charts controller
 export const getWeeklyBorrowsStatsController = async (req, res, next) => {
   try {
     const stats = await getWeeklyBorrowStats();
