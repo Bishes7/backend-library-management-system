@@ -41,3 +41,8 @@ export const getWeeklyBorrowStats = async () => {
 
   return { labels, data };
 };
+
+// dashboard borrow stats
+export const dashboardBorrowStats = () => {
+  return borrowHistorySchema.countDocuments();
+};

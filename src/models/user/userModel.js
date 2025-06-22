@@ -39,3 +39,8 @@ export const getWeeklyUserStats = async () => {
 
   return { labels, data };
 };
+
+// user stats for dashboard
+export const dashboardUserStats = () => {
+  return userSchema.countDocuments();
+};

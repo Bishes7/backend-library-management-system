@@ -1,5 +1,8 @@
 import express from "express";
-import { getBorrowStatusStats } from "../controllers/borrowStatusController.js";
+import {
+  DashboarsStatsController,
+  getBorrowStatusStats,
+} from "../controllers/borrowStatusController.js";
 import {
   adminMiddleware,
   userAuthMiddleware,
@@ -22,6 +25,14 @@ router.get(
   userAuthMiddleware,
   adminMiddleware,
   getRecentBooksController
+);
+
+// routes for dashboard summary stats
+router.get(
+  "/dashboard-stats",
+  userAuthMiddleware,
+  adminMiddleware,
+  DashboarsStatsController
 );
 
 export default router;

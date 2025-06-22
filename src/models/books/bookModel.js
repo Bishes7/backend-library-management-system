@@ -76,6 +76,11 @@ export const getBorrowStatus = async () => {
 };
 
 // recent books chart
-export const recentBooksChart = async () => {
-  const books = await bookSchema.find().sort({ createdAt: -1 }).limit(5);
+export const recentBooksChart = () => {
+  return bookSchema.find().sort({ createdAt: -1 }).limit(5);
+};
+
+// books stats for dashboard
+export const dashboardBookStats = () => {
+  return bookSchema.countDocuments();
 };
