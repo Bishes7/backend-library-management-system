@@ -165,3 +165,13 @@ Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNwZWNpY
     "_id": "684bc2884c1e148431aa66eb",
     "isApproved": true
 }
+
+### change password
+PATCH {{rootURl}}/api/v1/auth/change-password
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNwZWNpYWxiaXNoZXM5QGdtYWlsLmNvbSIsImlhdCI6MTc1MDY5MDIwOCwiZXhwIjoxNzUwNjkzODA4fQ.ggLEVrKewMp9euRToYiNqrmoh732M20XLXAXeIcHf6k
+
+{   
+    "currentPassword":"Adamghat7*",
+    "newPassword":"newpassword"
+}

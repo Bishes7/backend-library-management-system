@@ -2,6 +2,7 @@
 import express from "express";
 import {
   activateUser,
+  changePasswordController,
   insertNewUser,
   loginUser,
   logoutUser,
@@ -39,5 +40,8 @@ router.post("/psw-reset", passwordReset);
 
 // Update Password
 router.post("/update-password", updateNewPassword);
+
+// route to change the password
+router.patch("/change-password", userAuthMiddleware, changePasswordController);
 
 export default router;

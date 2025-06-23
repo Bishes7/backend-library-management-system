@@ -217,3 +217,42 @@ export const updateNewPassword = async (req, res, next) => {
     next(error);
   }
 };
+
+// change the password
+export const changePasswordController = async (req, res, next) => {
+  try {
+    const { email } = req.userInfo;
+    const { currentPassword, newPassword } = req.body;
+
+    const user = await getUserByEmail(email);
+    if (!user) {
+      return clientResponse({
+        req,
+        res,
+        message: "User not found",
+        statusCode: 404,
+      });
+    }
+    console.log("Current Password from req.body:", currentPassword);
+    console.log("User password from DB:", user.password);
+
+    const isPswMatched = comparePassword(currentPassword, user.password);
+
+    if (!isPswMatched) {
+      return clientResponse({
+        req,
+        res,
+        message: "Current password is incorrect",
+      });
+    }
+    user.password = encryptPasword(newPassword);
+    await user.save();
+    return clientResponse({
+      req,
+      res,
+      message: "Password changed successfully",
+    });
+  } catch (error) {
+    next(error);
+  }
+};
