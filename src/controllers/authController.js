@@ -222,7 +222,7 @@ export const updateNewPassword = async (req, res, next) => {
 export const changePasswordController = async (req, res, next) => {
   try {
     const { email } = req.userInfo;
-    const { currentPassword, newPassword } = req.body;
+    const { password: currentPassword, newPassword } = req.body;
 
     const user = await getUserByEmail(email);
     if (!user) {
@@ -233,8 +233,6 @@ export const changePasswordController = async (req, res, next) => {
         statusCode: 404,
       });
     }
-    console.log("Current Password from req.body:", currentPassword);
-    console.log("User password from DB:", user.password);
 
     const isPswMatched = comparePassword(currentPassword, user.password);
 
@@ -243,6 +241,7 @@ export const changePasswordController = async (req, res, next) => {
         req,
         res,
         message: "Current password is incorrect",
+        statusCode: 400,
       });
     }
     user.password = encryptPasword(newPassword);
