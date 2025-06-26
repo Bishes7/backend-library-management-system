@@ -1,5 +1,6 @@
 import { checkToken } from "../../models/session/sessionModel.js";
 import {
+  getAllUsers,
   getUser,
   getUserByEmail,
   getWeeklyUserStats,
@@ -93,6 +94,23 @@ export const getWeeklyUserStatsController = async (req, res, next) => {
   try {
     const stats = await getWeeklyUserStats();
     res.json(stats);
+  } catch (error) {
+    next(error);
+  }
+};
+
+// get all users
+export const getAllUsersController = async (req, res, next) => {
+  try {
+    const users = await getAllUsers();
+    if (users) {
+      clientResponse({
+        req,
+        res,
+        message: "Here are the list of all users",
+        payload: users,
+      });
+    }
   } catch (error) {
     next(error);
   }

@@ -20,6 +20,11 @@ export const getUser = (filter) => {
   return userSchema.findOne(filter);
 };
 
+// get all users
+export const getAllUsers = () => {
+  return userSchema.find().sort({ createdAt: -1 }).select("-password");
+};
+
 // get weekly user stats
 export const getWeeklyUserStats = async () => {
   const results = await userSchema.aggregate([

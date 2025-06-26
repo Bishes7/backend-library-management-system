@@ -37,14 +37,18 @@ Content-Type: application/json
 
 {
     "email":"specialbishes9@gmail.com",
-    "password": "Adamghat7*"
+    "password": "Adamghat7&"
 
 }
 
 # GET USER
 ### GET
 GET {{rootURl}}/api/v1/user/profile
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNwZWNpYWxiaXNoZXM5QGdtYWlsLmNvbSIsImlhdCI6MTc0NTY2MzMyOSwiZXhwIjoxNzQ1NjY2OTI5fQ.a1Ee8Owot1qx1vfLaNL8ZB5Dd8v3mL9D4Ahv85mQesE   
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNwZWNpYWxiaXNoZXM5QGdtYWlsLmNvbSIsImlhdCI6MTc1MDkyNTg1NSwiZXhwIjoxNzUzNTE3ODU1fQ.WaceRXtJ8tHECr5BDuQqlS0FxHzMpmhEQkKbMG545vo  
+
+### Get All users
+GET {{rootURl}}/api/v1/user/all-users
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNwZWNpYWxiaXNoZXM5QGdtYWlsLmNvbSIsImlhdCI6MTc1MDkzMDYwNCwiZXhwIjoxNzUzNTIyNjA0fQ.GajGOaYxXmHQwK_E9EmjMMXryHpIcWM-MxaUqPf2wnw
 
 ###GET New AccessJWT
 GET {{rootURl}}/api/v1/auth/renew-jwt
@@ -175,3 +179,4 @@ Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNwZWNpY
     "currentPassword":"newpassword",
     "newPassword":"Adamghat7&"
 }
+

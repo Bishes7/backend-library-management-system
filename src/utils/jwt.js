@@ -5,7 +5,7 @@ import { updateUser } from "../models/user/userModel.js";
 // generate accessJWT
 export const accessJWT = async (email) => {
   const token = jwt.sign({ email }, process.env.ACCESSJWT_KEY, {
-    expiresIn: "60m",
+    expiresIn: "30d",
   });
   const obj = {
     token,

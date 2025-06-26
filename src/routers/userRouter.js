@@ -1,6 +1,7 @@
 import express from "express";
 import {
   adminMiddleware,
+  getAllUsersController,
   getWeeklyUserStatsController,
   userAuthMiddleware,
 } from "../middlewares/Validation/authMiddleware.js";
@@ -31,4 +32,11 @@ router.get(
   getWeeklyUserStatsController
 );
 
+// get all users
+router.get(
+  "/all-users",
+  userAuthMiddleware,
+  adminMiddleware,
+  getAllUsersController
+);
 export default router;

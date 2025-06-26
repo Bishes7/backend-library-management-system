@@ -14,6 +14,7 @@ import {
   loginValidation,
 } from "../middlewares/validation/authValidation.js";
 import {
+  adminMiddleware,
   renewAccessJWT,
   userAuthMiddleware,
 } from "../middlewares/Validation/authMiddleware.js";
@@ -42,6 +43,11 @@ router.post("/psw-reset", passwordReset);
 router.post("/update-password", updateNewPassword);
 
 // route to change the password
-router.patch("/change-password", userAuthMiddleware, changePasswordController);
+router.patch(
+  "/change-password",
+  userAuthMiddleware,
+  adminMiddleware,
+  changePasswordController
+);
 
 export default router;
