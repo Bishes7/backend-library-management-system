@@ -49,3 +49,8 @@ export const getWeeklyUserStats = async () => {
 export const dashboardUserStats = () => {
   return userSchema.countDocuments();
 };
+
+// delete users
+export const deleteUser = (_id) => {
+  return userSchema.findByIdAndDelete(_id);
+};

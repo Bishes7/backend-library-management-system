@@ -180,3 +180,7 @@ Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNwZWNpY
     "newPassword":"Adamghat7&"
 }
 
+### Delete User
+DELETE {{rootURl}}/api/v1/user/680330e140e0a01b99a283fb
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNwZWNpYWxiaXNoZXM5QGdtYWlsLmNvbSIsImlhdCI6MTc1MTAxMDk0NCwiZXhwIjoxNzUzNjAyOTQ0fQ.JTBgAtNURu4E21Ol4wxJDikp-G48nZF4KcTWAc_lsC0

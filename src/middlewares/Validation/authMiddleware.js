@@ -1,5 +1,6 @@
 import { checkToken } from "../../models/session/sessionModel.js";
 import {
+  deleteUser,
   getAllUsers,
   getUser,
   getUserByEmail,
@@ -109,6 +110,24 @@ export const getAllUsersController = async (req, res, next) => {
         res,
         message: "Here are the list of all users",
         payload: users,
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
+// Delete User
+export const deleteUserController = async (req, res, next) => {
+  const { id } = req.params;
+
+  try {
+    const payload = await deleteUser(id);
+    if (payload._id) {
+      return clientResponse({
+        req,
+        res,
+        message: "User has been deleted",
       });
     }
   } catch (error) {

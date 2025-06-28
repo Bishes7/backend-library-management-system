@@ -1,6 +1,7 @@
 import express from "express";
 import {
   adminMiddleware,
+  deleteUserController,
   getAllUsersController,
   getWeeklyUserStatsController,
   userAuthMiddleware,
@@ -40,3 +41,11 @@ router.get(
   getAllUsersController
 );
 export default router;
+
+// Delete Selected User
+router.delete(
+  "/:id",
+  userAuthMiddleware,
+  adminMiddleware,
+  deleteUserController
+);
