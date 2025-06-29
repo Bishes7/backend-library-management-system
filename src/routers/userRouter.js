@@ -4,6 +4,7 @@ import {
   deleteUserController,
   getAllUsersController,
   getWeeklyUserStatsController,
+  updateUserStatusController,
   userAuthMiddleware,
 } from "../middlewares/Validation/authMiddleware.js";
 import { clientResponse } from "../middlewares/clientResponse.js";
@@ -49,3 +50,14 @@ router.delete(
   adminMiddleware,
   deleteUserController
 );
+
+// Change User Status
+router.patch(
+  "/status/:id",
+  userAuthMiddleware,
+  adminMiddleware,
+  updateUserStatusController
+);
+
+// promoto user to admin
+// router.patch("/role/:id", userAuthMiddleware, adminMiddleware);

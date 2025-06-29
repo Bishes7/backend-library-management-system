@@ -5,6 +5,7 @@ import {
   getUser,
   getUserByEmail,
   getWeeklyUserStats,
+  updateUserStatus,
 } from "../../models/user/userModel.js";
 import {
   accessJWT,
@@ -130,6 +131,30 @@ export const deleteUserController = async (req, res, next) => {
         message: "User has been deleted",
       });
     }
+  } catch (error) {
+    next(error);
+  }
+};
+
+// Update User status
+export const updateUserStatusController = async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const payload = await updateUserStatus(id);
+    if (payload?._id) {
+      return clientResponse({
+        req,
+        res,
+        message: "User status updated Successfully",
+        payload,
+      });
+    }
+    return clientResponse({
+      req,
+      res,
+      message: "User not found",
+      statusCode: 404,
+    });
   } catch (error) {
     next(error);
   }

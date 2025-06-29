@@ -54,3 +54,15 @@ export const dashboardUserStats = () => {
 export const deleteUser = (_id) => {
   return userSchema.findByIdAndDelete(_id);
 };
+
+// update user status
+export const updateUserStatus = async (id) => {
+  const user = await userSchema.findById(id);
+
+  if (!user) return null;
+
+  // change the status
+  user.status = user.status === "active" ? "inactive" : "active";
+  await user.save();
+  return user;
+};
