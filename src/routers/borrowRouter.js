@@ -6,6 +6,7 @@ import {
 import {
   getBorrowsBooks,
   getWeeklyBorrowsStatsController,
+  getWeeklyUserBorrowStatsController,
   insertNewBorrow,
   returnBorrowedBooks,
 } from "../controllers/borrowController.js";
@@ -34,4 +35,10 @@ router.get(
   getWeeklyBorrowsStatsController
 );
 
+// // user weekly borrow stats
+router.get(
+  "/borrow-chart",
+  userAuthMiddleware,
+  getWeeklyUserBorrowStatsController
+);
 export default router;

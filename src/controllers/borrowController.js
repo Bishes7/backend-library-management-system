@@ -2,6 +2,7 @@ import { clientResponse } from "../middlewares/clientResponse.js";
 import { updateSelectedBooks } from "../models/books/bookModel.js";
 import {
   getAllBorrowsData,
+  getUserWeeklyBorrowStats,
   getWeeklyBorrowStats,
   insertBorrowsBook,
   updateBorrowsTable,
@@ -122,6 +123,17 @@ export const getWeeklyBorrowsStatsController = async (req, res, next) => {
   try {
     const stats = await getWeeklyBorrowStats();
     res.json(stats);
+  } catch (error) {
+    next(error);
+  }
+};
+
+// user weekly borrow stats
+export const getWeeklyUserBorrowStatsController = async (req, res, next) => {
+  try {
+    const { _id } = req.userInfo;
+    const result = await getUserWeeklyBorrowStats(_id);
+    res.json(result);
   } catch (error) {
     next(error);
   }

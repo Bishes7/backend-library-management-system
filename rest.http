@@ -189,3 +189,9 @@ Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNwZWNpY
 PATCH {{rootURl}}/api/v1/user/status/681237b3275dc4489de0b9c2
 Content-Type: application/json
 Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNwZWNpYWxiaXNoZXM5QGdtYWlsLmNvbSIsImlhdCI6MTc1MTE4MTgyMywiZXhwIjoxNzUzNzczODIzfQ.pJLK1CT-EiWyG1NjFrv0tRe4LH5PQSMhEoWSiN_ZJNs
+
+
+### Update user Role
+PATCH {{rootURl}}/api/v1/user/role/681237b3275dc4489de0b9c2
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNwZWNpYWxiaXNoZXM5QGdtYWlsLmNvbSIsImlhdCI6MTc1MTE4NTY2MywiZXhwIjoxNzUzNzc3NjYzfQ.WmB1sz4c4ZyGqIEpVBh4Db0dwQaGtO-TSViSyjTGr2Q

@@ -3,7 +3,9 @@ import {
   adminMiddleware,
   deleteUserController,
   getAllUsersController,
+  getSingleUserController,
   getWeeklyUserStatsController,
+  updateUserRoleController,
   updateUserStatusController,
   userAuthMiddleware,
 } from "../middlewares/Validation/authMiddleware.js";
@@ -59,5 +61,18 @@ router.patch(
   updateUserStatusController
 );
 
-// promoto user to admin
-// router.patch("/role/:id", userAuthMiddleware, adminMiddleware);
+// promote user to admin
+router.patch(
+  "/role/:id",
+  userAuthMiddleware,
+  adminMiddleware,
+  updateUserRoleController
+);
+
+// get single user by id
+router.get(
+  "/:id",
+  userAuthMiddleware,
+  adminMiddleware,
+  getSingleUserController
+);

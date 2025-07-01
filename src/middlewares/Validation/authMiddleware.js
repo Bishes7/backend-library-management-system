@@ -2,9 +2,11 @@ import { checkToken } from "../../models/session/sessionModel.js";
 import {
   deleteUser,
   getAllUsers,
+  getSingleUser,
   getUser,
   getUserByEmail,
   getWeeklyUserStats,
+  updateUserRole,
   updateUserStatus,
 } from "../../models/user/userModel.js";
 import {
@@ -153,6 +155,55 @@ export const updateUserStatusController = async (req, res, next) => {
       req,
       res,
       message: "User not found",
+      statusCode: 404,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// Update User role
+export const updateUserRoleController = async (req, res, next) => {
+  const { id } = req.params;
+
+  try {
+    const payload = await updateUserRole(id);
+    if (payload?._id) {
+      return clientResponse({
+        req,
+        res,
+        message: "Role is Updated Succesfully",
+        payload,
+      });
+    }
+    clientResponse({
+      req,
+      res,
+      message: "Unable to update role at this time",
+      statusCode: 404,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+//  get single user by id
+export const getSingleUserController = async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const payload = await getSingleUser(id);
+    if (payload?._id) {
+      return clientResponse({
+        req,
+        res,
+        message: "Here is the selected User details",
+        payload,
+      });
+    }
+    clientResponse({
+      req,
+      res,
+      message: "Error fetching user at this time",
       statusCode: 404,
     });
   } catch (error) {

@@ -42,6 +42,32 @@ export const getWeeklyBorrowStats = async () => {
   return { labels, data };
 };
 
+// get user weekly borrow stats
+export const getUserWeeklyBorrowStats = async (userId) => {
+  const results = await borrowHistorySchema.aggregate([
+    {
+      $match: {
+        userId: userId,
+      },
+    },
+    {
+      $group: {
+        _id: {
+          week: { $isoWeek: { $toDate: "$createdAt" } },
+          year: { $isoWeekYear: { $toDate: "$createdAt" } },
+        },
+        count: { $sum: 1 },
+      },
+    },
+    { $sort: { "_id.year": 1, "_id.week": 1 } },
+  ]);
+
+  const labels = results.map((r) => `Week ${r._id.week} (${r._id.year})`);
+
+  const data = results.map((r) => r.count);
+  return { labels, data };
+};
+
 // dashboard borrow stats
 export const dashboardBorrowStats = () => {
   return borrowHistorySchema.countDocuments();

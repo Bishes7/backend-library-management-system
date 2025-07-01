@@ -66,3 +66,20 @@ export const updateUserStatus = async (id) => {
   await user.save();
   return user;
 };
+
+// Update user role
+
+export const updateUserRole = async (id) => {
+  const user = await userSchema.findById(id);
+
+  if (!user) return null;
+
+  user.role = user.role === "admin" ? "user" : "admin";
+  await user.save();
+  return user;
+};
+
+// get Single User
+export const getSingleUser = (id) => {
+  return userSchema.findById(id).select("-password");
+};
