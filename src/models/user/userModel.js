@@ -83,3 +83,17 @@ export const updateUserRole = async (id) => {
 export const getSingleUser = (id) => {
   return userSchema.findById(id).select("-password");
 };
+
+// upload profile image
+export const uploadProfileImage = (userId, imagePath) => {
+  return userSchema.findByIdAndUpdate(
+    userId,
+    { profilePic: `/image/${imagePath}` },
+    { new: true }
+  );
+};
+
+// update profie details
+export const updateProfileDetails = (id) => {
+  return userSchema.findById(id);
+};

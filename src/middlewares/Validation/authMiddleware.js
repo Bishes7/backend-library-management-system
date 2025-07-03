@@ -6,8 +6,10 @@ import {
   getUser,
   getUserByEmail,
   getWeeklyUserStats,
+  updateProfileDetails,
   updateUserRole,
   updateUserStatus,
+  uploadProfileImage,
 } from "../../models/user/userModel.js";
 import {
   accessJWT,
@@ -205,6 +207,83 @@ export const getSingleUserController = async (req, res, next) => {
       res,
       message: "Error fetching user at this time",
       statusCode: 404,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// upload profile pic
+export const uploadProfileImageController = async (req, res, next) => {
+  try {
+    const userId = req.userInfo?._id;
+    const imagePath = req.file?.filename;
+
+    if (!userId) {
+      return clientResponse({
+        req,
+        res,
+        message: "UserId is missing",
+        statusCode: 401,
+      });
+    }
+    if (!imagePath) {
+      return clientResponse({
+        req,
+        res,
+        statusCode: 400,
+        message: "No file uploaded",
+      });
+    }
+    const updatedUser = await uploadProfileImage(userId, imagePath);
+    if (updatedUser) {
+      return clientResponse({
+        req,
+        res,
+        message: "Profile picture uploaded",
+        payload: updatedUser,
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
+// update profile details
+export const updateProfileDetailsController = async (req, res, next) => {
+  try {
+    const userId = req.userInfo;
+    const { fName, lName, email } = req.body;
+
+    // find the user
+    const user = await updateProfileDetails(userId);
+
+    if (!user) {
+      return clientResponse({
+        req,
+        res,
+        message: "User not found",
+        statusCode: 404,
+      });
+    }
+
+    user.fName = fName;
+    user.lName = lName;
+    user.email = email;
+
+    // save the updated user in db
+    await user.save();
+
+    // send the response
+    return clientResponse({
+      req,
+      res,
+      message: "Profile Updated Successfully",
+      payload: {
+        fName,
+        lName,
+        email,
+      },
     });
   } catch (error) {
     next(error);

@@ -5,11 +5,14 @@ import {
   getAllUsersController,
   getSingleUserController,
   getWeeklyUserStatsController,
+  updateProfileDetailsController,
   updateUserRoleController,
   updateUserStatusController,
+  uploadProfileImageController,
   userAuthMiddleware,
 } from "../middlewares/Validation/authMiddleware.js";
 import { clientResponse } from "../middlewares/clientResponse.js";
+import { upload } from "../utils/multer.js";
 
 const router = express.Router();
 
@@ -75,4 +78,19 @@ router.get(
   userAuthMiddleware,
   adminMiddleware,
   getSingleUserController
+);
+
+// upload- profile image
+router.patch(
+  "/upload-profile",
+  userAuthMiddleware,
+  upload.single("profile"),
+  uploadProfileImageController
+);
+
+// update profile details
+router.get(
+  "/update-profile",
+  userAuthMiddleware,
+  updateProfileDetailsController
 );
