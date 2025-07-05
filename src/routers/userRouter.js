@@ -89,7 +89,7 @@ router.patch(
 );
 
 // update profile details
-router.get(
+router.patch(
   "/update-profile",
   userAuthMiddleware,
   updateProfileDetailsController
