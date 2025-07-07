@@ -21,3 +21,8 @@ export const getReviews = (filter) => {
 export const updateReview = ({ _id, ...rest }) => {
   return reviewSchema.findByIdAndUpdate(_id, rest);
 };
+
+// delete reviews
+export const deleteReview = (id) => {
+  return reviewSchema.findByIdAndDelete(id);
+};

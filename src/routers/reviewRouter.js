@@ -4,6 +4,7 @@ import {
   userAuthMiddleware,
 } from "../middlewares/Validation/authMiddleware.js";
 import {
+  deleteReviewController,
   getAllReviews,
   insertNewReviews,
   updateReviewStatus,
@@ -23,5 +24,12 @@ router.get("/admin", userAuthMiddleware, getAllReviews);
 
 // update review status
 router.patch("/admin", userAuthMiddleware, adminMiddleware, updateReviewStatus);
+
+router.delete(
+  "/:id",
+  userAuthMiddleware,
+  adminMiddleware,
+  deleteReviewController
+);
 
 export default router;

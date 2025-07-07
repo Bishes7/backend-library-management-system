@@ -2,6 +2,7 @@ import { clientResponse } from "../middlewares/clientResponse.js";
 import { updateBorrowsTable } from "../models/borrowHistory/borrowHistoryModel.js";
 import {
   createReview,
+  deleteReview,
   getReviews,
   updateReview,
 } from "../models/review/reviewModel.js";
@@ -79,6 +80,31 @@ export const updateReviewStatus = async (req, res, next) => {
           statusCode: 400,
           message: "Error updating review at this time",
         });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// delete review controller
+export const deleteReviewController = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const deletedReview = await deleteReview(id);
+
+    if (deletedReview?._id) {
+      clientResponse({
+        req,
+        res,
+        message: "Review has been deleted successfully",
+      });
+    } else {
+      clientResponse({
+        req,
+        res,
+        message: "Error deleting review at this time",
+        statusCode: 401,
+      });
+    }
   } catch (error) {
     next(error);
   }

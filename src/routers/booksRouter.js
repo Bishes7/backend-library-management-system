@@ -37,7 +37,7 @@ router.put(
   "/",
   userAuthMiddleware,
   adminMiddleware,
-  upload.array("image", 2),
+  upload.single("image", 1),
   updateBookValidation,
   updateBooks
 );
