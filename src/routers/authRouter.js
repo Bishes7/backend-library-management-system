@@ -14,7 +14,6 @@ import {
   loginValidation,
 } from "../middlewares/validation/authValidation.js";
 import {
-  adminMiddleware,
   renewAccessJWT,
   userAuthMiddleware,
 } from "../middlewares/Validation/authMiddleware.js";
