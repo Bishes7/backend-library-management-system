@@ -16,7 +16,7 @@ import {
 import {
   renewAccessJWT,
   userAuthMiddleware,
-} from "../middlewares/Validation/authMiddleware.js";
+} from "../middlewares/validation/authMiddleware.js";
 
 const router = express.Router();
 
