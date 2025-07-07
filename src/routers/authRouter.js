@@ -12,11 +12,11 @@ import {
 import {
   newUserValidation,
   loginValidation,
-} from "../middlewares/validation/authValidation.js";
+} from "../middlewares/Validation/authValidation.js";
 import {
   renewAccessJWT,
   userAuthMiddleware,
-} from "../middlewares/validation/authMiddleware.js";
+} from "../middlewares/Validation/authMiddleware.js";
 
 const router = express.Router();
 
