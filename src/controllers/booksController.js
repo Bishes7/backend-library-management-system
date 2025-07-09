@@ -20,14 +20,17 @@ export const insertNewbook = async (req, res, next) => {
     const { fName, _id } = req.userInfo;
     const { path } = req.file;
 
+    const cleanPath = path.replace("public", ""); // ✅ remove "public" from path
+
     const obj = {
       ...req.body,
       slug: slugify(req.body.title, { lower: true }),
       addedBy: { name: fName, adminId: _id },
       lastUpdateBy: { name: fName, adminId: _id },
-      imgUrl: path,
-      imageList: [path],
+      imgUrl: cleanPath,
+      imageList: [cleanPath],
     };
+    console.log("Uploaded path", cleanPath);
     // adding book query
     const book = await createNewBook(obj);
     book?._id
@@ -63,7 +66,7 @@ export const updateBooks = async (req, res, next) => {
     if (Array.isArray(req.files)) {
       req.body.imageList = [
         ...req.body.imageList.split(","),
-        ...req.files.map((obj) => obj.path),
+        ...req.files.map((obj) => obj.path.replace("public", "")),
       ];
     }
 
