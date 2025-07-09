@@ -24,6 +24,8 @@ const frontendURL = process.env.FRONTEND_URL || "http://localhost:5173";
 
 // Insert New User
 export const insertNewUser = async (req, res, next) => {
+  console.log("✅ Frontend URL used:", frontendURL);
+
   try {
     // receive user data
     const { password } = req.body;
