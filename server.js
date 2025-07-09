@@ -43,7 +43,7 @@ app.use("/api/v1/reviews", reviewsRouter);
 app.use("/api/stats", statsRouter);
 
 // importing DataBase Connection Function
-
+// console.log("📦 BASE URL:", import.meta.env.VITE_BASE_URL);
 // Global Errror Handler
 app.use(erroHandler);
 

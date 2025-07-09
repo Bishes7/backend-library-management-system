@@ -67,6 +67,4 @@ router.get(
   getBooksCategoryController
 );
 
-// route for borrow status chart
-router.get("/borrow-status", userAuthMiddleware, adminMiddleware);
 export default router;

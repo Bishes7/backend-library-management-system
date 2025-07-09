@@ -11,7 +11,6 @@ import {
   returnBorrowedBooks,
 } from "../controllers/borrowController.js";
 import { borrowDataValidaton } from "../middlewares/Validation/borrowDataValidation.js";
-import { getWeeklyBorrowStats } from "../models/borrowHistory/borrowHistoryModel.js";
 
 const router = express.Router();
 
