@@ -35,6 +35,10 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: "", // or "/default-profile.png" if you want
     },
+    isDemo: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true }
 );
