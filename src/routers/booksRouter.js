@@ -18,6 +18,7 @@ import {
   updateBookValidation,
 } from "../middlewares/Validation/bookValidation.js";
 import { upload } from "../utils/multer.js";
+import { blockDemoUser } from "../middlewares/blockDemoUser.js";
 
 const router = express.Router();
 
@@ -26,6 +27,7 @@ router.post(
   "/",
   userAuthMiddleware,
   adminMiddleware,
+  blockDemoUser,
   upload.single("image"),
   newBookValidation,
 
@@ -37,6 +39,7 @@ router.put(
   "/",
   userAuthMiddleware,
   adminMiddleware,
+  blockDemoUser,
   upload.single("image", 1),
   updateBookValidation,
   updateBooks
@@ -47,6 +50,7 @@ router.delete(
   "/:_id",
   userAuthMiddleware,
   adminMiddleware,
+  blockDemoUser,
   deleteBookController
 );
 

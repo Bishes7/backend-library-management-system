@@ -10,6 +10,7 @@ import {
   updateReviewStatus,
 } from "../controllers/reviewController.js";
 import { reviewValidation } from "../middlewares/Validation/reviewValidation.js";
+import { blockDemoUser } from "../middlewares/blockDemoUser.js";
 
 const router = express.Router();
 
@@ -20,15 +21,22 @@ router.post("/", userAuthMiddleware, reviewValidation, insertNewReviews);
 router.get("/", getAllReviews);
 
 // get all reviews for admin
-router.get("/admin", userAuthMiddleware, getAllReviews);
+router.get("/admin", userAuthMiddleware, adminMiddleware, getAllReviews);
 
 // update review status
-router.patch("/admin", userAuthMiddleware, adminMiddleware, updateReviewStatus);
+router.patch(
+  "/admin",
+  userAuthMiddleware,
+  adminMiddleware,
+  blockDemoUser,
+  updateReviewStatus
+);
 
 router.delete(
   "/:id",
   userAuthMiddleware,
   adminMiddleware,
+  blockDemoUser,
   deleteReviewController
 );
 
