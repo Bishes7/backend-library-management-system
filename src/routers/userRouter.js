@@ -13,6 +13,7 @@ import {
 } from "../middlewares/Validation/authMiddleware.js";
 import { clientResponse } from "../middlewares/clientResponse.js";
 import { upload } from "../utils/multer.js";
+import { blockDemoUser } from "../middlewares/blockDemoUser.js";
 
 const router = express.Router();
 
@@ -53,6 +54,7 @@ router.delete(
   "/:id",
   userAuthMiddleware,
   adminMiddleware,
+  blockDemoUser,
   deleteUserController
 );
 
@@ -61,6 +63,7 @@ router.patch(
   "/status/:id",
   userAuthMiddleware,
   adminMiddleware,
+  blockDemoUser,
   updateUserStatusController
 );
 
@@ -69,6 +72,7 @@ router.patch(
   "/role/:id",
   userAuthMiddleware,
   adminMiddleware,
+  blockDemoUser,
   updateUserRoleController
 );
 
