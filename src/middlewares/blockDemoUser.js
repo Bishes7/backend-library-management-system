@@ -1,4 +1,4 @@
-import { clientResponse } from "./clientResponse";
+import { clientResponse } from "./clientResponse.js";
 
 export const blockDemoUser = (req, res, next) => {
   if (req.userInfo?.isDemo) {
