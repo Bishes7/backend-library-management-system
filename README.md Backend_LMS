@@ -1,0 +1,85 @@
+# 📚 Library Management System – Backend (Node.js + Express)
+
+This is the **backend** of my full-stack **Library Management System** project, built using **Node.js**, **Express.js**, and **MongoDB**.
+
+---
+
+##  Live API Base URL
+https://backend-library-management-system.onrender.com
+
+---
+
+## ⚙ Features
+
+- User Authentication (JWT)
+- Admin and User Roles
+- Book Management (CRUD)
+- Borrow/Return System
+- Review System
+- Weekly Statistics API
+- Middleware & Error Handling
+
+---
+
+##  Folder Structure
+/src
+/config # DB connect and env config
+/controllers # Backend and Database logic
+/models # Mongoose schemas
+/routers # Route definitions
+/middlewares # Auth,Admin, Demo Admin and error handlers
+/utils # Utility functions, bcryptjs, multer, jwts
+
+---
+
+##  Tech Stack
+
+- Node.js
+- Express.js
+- MongoDB + Mongoose
+- JSON Web Token (JWT)
+- Render for deployment
+
+---
+##  Running Locally
+
+bash
+# Clone repo
+git clone https://github.com/bishes7/backend-library-management-system.git
+
+# Install dependencies
+npm install
+
+# Setup environment variables (Examples)
+MONGO_URL=your-mongo-db-url
+JWT_SECRET=your-secret
+
+# Start the server
+yarn dev
+
+# API Testing
+Use Postman or rest.http to test the following routes:
+
+POST /register
+POST /login
+GET /books
+POST /books
+PUT /books/:id
+DELETE /books/:id
+etc...
+
+# Author
+Bishes Adhikari
+ Based in Sydney, Australia
+ Aspiring Full Stack Developer
+ LinkedIn - https://www.linkedin.com/in/bishes-adhikari/
+ specialbishes9@gmail.com
+
+
+
+
+
+
+ 
+
+
